@@ -1,8 +1,8 @@
 // src/store/store.ts
-import { configureStore } from '@reduxjs/toolkit';
-import loginReducer from './loginSlice';
-import userReducer from './UserSlice';
-import contractReducer from './contractSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import loginReducer from "./loginSlice";
+import userReducer from "./UserSlice";
+import contractReducer from "./contractSlice";
 
 export const store = configureStore({
   reducer: {

@@ -1,5 +1,5 @@
 // src/store/contractSlice.ts
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ContractInfo {
   address: string;
@@ -16,7 +16,7 @@ const initialState: ContractState = {
 };
 
 export const contractSlice = createSlice({
-  name: 'contract',
+  name: "contract",
   initialState,
   reducers: {
     setContractInfo: (state, action: PayloadAction<ContractInfo | null>) => {

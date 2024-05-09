@@ -1,24 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import HomePage from './pages/HomePage';
-import BeginPage from './pages/BeginPage';
-import { Provider } from 'react-redux';
-import { store } from './store/store';
-import { Web3ReactProvider } from '@web3-react/core';
-import { ExternalProvider, Web3Provider } from '@ethersproject/providers';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { Web3ReactProvider } from "@web3-react/core";
 
+import { ethers } from "ethers";
 
-import { ethers } from 'ethers';
-
-function getLibrary(provider: ethers.providers.ExternalProvider): ethers.providers.Web3Provider {
+function getLibrary(
+  provider: ethers.providers.ExternalProvider,
+): ethers.providers.Web3Provider {
   return new ethers.providers.Web3Provider(provider);
 }
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement,
 );
 root.render(
   <React.StrictMode>
@@ -27,7 +25,7 @@ root.render(
         <App />
       </Provider>
     </Web3ReactProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

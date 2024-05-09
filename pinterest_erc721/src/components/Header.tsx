@@ -1,5 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faSearch,
@@ -15,9 +15,8 @@ function Header() {
       <div className="flex text-lg ">
         <button className="p-2">Trang chủ</button>
         <button className="p-2">Tạo</button>
-
       </div>
-  
+
       <div className="w-3/4">
         <form action="" className="w-full">
           <div className="relative flex items-center w-full">

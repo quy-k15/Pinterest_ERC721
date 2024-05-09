@@ -1,5 +1,4 @@
-
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 interface LoginState {
   isOpen: boolean;
@@ -10,7 +9,7 @@ const initialState: LoginState = {
 };
 
 export const loginSlice = createSlice({
-  name: 'login',
+  name: "login",
   initialState,
   reducers: {
     toggleLogin: (state) => {

@@ -10,3 +10,15 @@
     font-weight: 400;
     font-style: normal;
   }
+  @font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-VariableFont_slnt\,wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'RedditSans';
+    src: url('../fonts/RedditSans-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
