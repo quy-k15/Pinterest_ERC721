@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent } from "react";
+import React,{ useState, useEffect, FormEvent } from "react";
 import img_Logo from "../images/img_Logo.png";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,23 +11,17 @@ import { ethers } from "ethers";
 import { setUser } from "../store/UserSlice";
 import { setContractInfo } from "../store/contractSlice";
 import { useNavigate } from "react-router-dom";
-
-interface LoginProps {
-  open: boolean;
-  handleOpen: () => void;
-}
-// interface ContractInfo {
-//   address: string;
-//   tokenName: string;
-//   tokenSymbol: string;
-// }
+import {EthereumError} from "../interface/interface";
+import { LoginProps } from "../interface/interface";
+import {AbiItem} from "../interface/interface";
 
 const Login: React.FC<LoginProps> = ({ open, handleOpen }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { activate, account } = useWeb3React();
   const [contract, setContract] = useState<ethers.Contract>();
-  const address: string = "0xD86AC6bDa585ca719E1DD3DA60e8A7e70d94349e";
+  const address: string = process.env.CONTRACT_ADDRESS || "";
+
 
   const connect = async (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -53,7 +47,7 @@ const Login: React.FC<LoginProps> = ({ open, handleOpen }) => {
         } else {
           console.log("contract error");
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         // Type error as any to handle unknown properties
         console.error("Error on connecting:", error instanceof Error ? error.message : error);
       }
@@ -62,15 +56,6 @@ const Login: React.FC<LoginProps> = ({ open, handleOpen }) => {
     }
   };
 
-  interface AbiItem {
-    constant?: boolean;
-    inputs?: Array<{ name: string; type: string }>;
-    name?: string;
-    outputs?: Array<{ name: string; type: string }>;
-    payable?: boolean;
-    stateMutability?: string;
-    type: string;
-  }
   const getContract = async (
     address: string,
     abi: AbiItem[],
@@ -89,10 +74,12 @@ const Login: React.FC<LoginProps> = ({ open, handleOpen }) => {
       console.log(
         `address: ${address}Token Name: ${tokenName}, Symbol: ${tokenSymbol}`,
       );
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         console.error("Error on connecting:", error.message);
-        if ('reason' in error) console.error("Reversion reason:", (error as any).reason);
+        if ((error as EthereumError).reason) {
+          console.error("Reversion reason:", (error as EthereumError).reason);
+        }
       } else {
         console.error("An unexpected error occurred", error);
       }

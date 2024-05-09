@@ -1,20 +1,33 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBars,
   faSearch,
   faBell,
   faCommentDots,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import img_Logo from "../images/img_Logo.png";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Header() {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const GoToCreate = ()=>{
+    navigate('/createItemPage'); 
+  }
+  const GoToHome = ()=>{
+    navigate('/home'); 
+  }
+
+  const isCreatePage = location.pathname === '/createItemPage';
+  const isHomePage = location.pathname === '/home';
   return (
     <div className="flex justify-between h-24 items-center mx-10 px-4 text-black font-semibold">
       <img className="w-8" src={img_Logo} alt="Logo" />
       <div className="flex text-lg ">
-        <button className="p-2">Trang chủ</button>
-        <button className="p-2">Tạo</button>
+        <button className={`py-2 px-4 rounded-full ${isHomePage ? 'bg-gray-900 text-gray-100' : ''}`} onClick={GoToHome}>Trang chủ</button>
+        <button className={`py-2 px-4 rounded-full ${isCreatePage ? 'bg-gray-900 text-gray-100' : ''}`} onClick={GoToCreate}>Tạo</button>
       </div>
 
       <div className="w-3/4">
@@ -35,21 +48,23 @@ function Header() {
           </div>
         </form>
       </div>
-      <div>
-        <FontAwesomeIcon
+      <button>
+      <FontAwesomeIcon
           icon={faBell}
           className="text-2xl text-gray-500 dark:text-gray-400"
         />
-      </div>
-      <div>
-        <FontAwesomeIcon
+      </button>
+      <button>
+      <FontAwesomeIcon
           icon={faCommentDots}
           className="text-2xl text-gray-500 dark:text-gray-400"
         />
-      </div>
-      <div>
-        <FontAwesomeIcon icon={faBars} />
-      </div>
+      </button>
+      <button>
+      <FontAwesomeIcon icon={faUser} 
+         className="text-2xl text-gray-500 dark:text-gray-400 " />
+      </button>
+ 
     </div>
   );
 }
